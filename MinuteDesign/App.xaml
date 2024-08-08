@@ -1,0 +1,29 @@
+﻿<Application x:Class="MinuteDesign.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:MinuteDesign"
+             xmlns:viewModel="clr-namespace:MinuteDesign.MVVM.ViewModel"
+             xmlns:view="clr-namespace:MinuteDesign.MVVM.View"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/TextboxTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            
+            <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
+                <view:HomeView/>
+            </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type viewModel:WallBeamViewModel}">
+                <view:WallBeamView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:FreeBodyDiagramViewModel}">
+                <view:FreeBodyDiagramView/>
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

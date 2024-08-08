@@ -1,0 +1,108 @@
+﻿<Window x:Class="MinuteDesign.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MinuteDesign"
+        xmlns:viewModel="clr-namespace:MinuteDesign.MVVM.ViewModel"
+        mc:Ignorable="d"
+        Title="MinuteDesign" Height="600" Width="1200"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True">
+
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+    
+    <Border Background="#272537"
+            CornerRadius="15">
+        <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition/>
+            
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+            <Border BorderThickness="0,0,1,0"
+                    BorderBrush="Gray"
+                    Grid.Column="0"
+                    Grid.Row="1"/>
+
+                <TextBlock Text="Minute Design"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Foreground="White"
+                   FontSize="22"
+                   Margin="20,0,0,0"/>
+
+            <StackPanel Grid.Row="1"
+                        Margin="5">
+                <RadioButton Content="Home"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             IsChecked="True"
+                             Command="{Binding HomeViewCommand}"/>
+                <RadioButton Content="Wall beam design"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding WallBeamViewCommand}"/>
+                <RadioButton Content="Free body diagram"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding FreeBodyDiagramViewCommand}"/>
+
+
+            </StackPanel>
+            <TextBox Width="250"
+                       Height="40"
+                       VerticalContentAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="5"
+                       Grid.Column="1"
+                       Style="{StaticResource ModernTextbox}"/>
+            <ContentControl Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="10"
+                            Content="{Binding CurrentView}"/>
+            
+            <StackPanel Grid.Column="2"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Orientation="Horizontal">
+
+                <Button x:Name="minimizeButton"
+                        Content="____"
+                    Click="minimizeButton_Click"
+                    Width="50"
+                    Height="50"
+                    VerticalAlignment="Top">
+                </Button>
+                
+                <Button x:Name="closeButton"
+                    Click="closeButton_Click"
+                    Background="#FF8080"
+                    Content="X"
+                    Width="50"
+                    Height="50"
+                    VerticalAlignment="Top">
+                </Button>
+                
+            </StackPanel>
+            
+
+        </Grid>
+        
+    </Border>
+</Window>

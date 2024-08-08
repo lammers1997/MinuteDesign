@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="MinuteDesign.MVVM.View.BeamView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MinuteDesign.MVVM.View"
+             xmlns:converters="clr-namespace:MinuteDesign.MVVM.Converters"
+             mc:Ignorable="d" 
+             Height="150" Width="525">
+    <UserControl.Resources>
+        <converters:UserInputToLocationConverter x:Key="UserInputToLocationConverter" />
+    </UserControl.Resources>
+
+    <Grid>
+            <Grid Margin="12.5,0,0,0">
+                <Rectangle Width="500"
+                       Height="20"
+                       Fill="Gray"
+                       Stroke="Black"
+                       StrokeThickness="2"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"/>
+                <Line Stroke="Black"
+                  StrokeThickness="2"
+                  X1="0"
+                  X2="500"
+                  Y1="0"
+                  Y2="0"
+              Margin="0,120,0,0"/>
+                <Line Stroke="Black"
+                  StrokeThickness="2"
+                  X1="0"
+                  X2="0"
+                  Y1="110"
+                  Y2="130"
+                  Margin="0,0,0,0"/>
+                <Line Stroke="Black"
+                  StrokeThickness="2"
+                  X1="0"
+                  X2="0"
+                  Y1="110"
+                  Y2="130"
+                  Margin="500,0,0,0"/>
+            </Grid>
+
+            <TextBlock Text="{Binding LengthTextBox}"
+                       Height="20"
+                       Width="100"
+                       FontSize="14"
+                       HorizontalAlignment="Left"
+                       Margin="185,60,0,0">
+            </TextBlock>
+            <ItemsControl ItemsSource="{Binding BeamSupportModels}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemContainerStyle>
+                    <Style>
+                    <Setter Property="Canvas.Left" Value="{Binding LocationFromLeft, 
+                        Converter={StaticResource UserInputToLocationConverter}}"/>
+                        <Setter Property="Canvas.Top" Value="20"/>
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding ImagePath, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" Width="25" Height="25"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+    </Grid>
+</UserControl>
